@@ -185,17 +185,17 @@ class SqueezeStrategy:
                 name=ticker_names.get(ticker, ticker),
                 signal=signal,
                 pattern=self._detect_pattern(latest),
-                entry_price=float(latest['Open']),
+                entry_price=float(latest.get('OPEN', latest.get('Open', 0))),
                 momentum=float(latest.get('Momentum', 0)),
                 energy_level=int(latest.get('Energy_Level', 0)),
                 squeeze_on=bool(latest.get('Squeeze_On', False)),
                 fired=bool(latest.get('Fired', False)),
                 market_regime=self.current_regime.value,
                 timestamp=latest.name,
-                close=float(latest['Close']),
-                volume=float(latest.get('Volume', 0)),
-                stop_loss_price=self._calculate_stop_loss(float(latest['Open'])),
-                take_profit_price=self._calculate_take_profit(float(latest['Open'])),
+                close=float(latest.get('CLOSE', latest.get('Close', 0))),
+                volume=float(latest.get('VOLUME', latest.get('Volume', 0))),
+                stop_loss_price=self._calculate_stop_loss(float(latest.get('OPEN', latest.get('Open', 100)))),
+                take_profit_price=self._calculate_take_profit(float(latest.get('OPEN', latest.get('Open', 100)))),
             )
             
             signals.append(stock_signal)
@@ -301,26 +301,41 @@ class SqueezeStrategy:
         return True
     
     def _determine_signal(self, latest: pd.Series, prev: pd.Series) -> SignalType:
-        """Determine trading signal"""
+        """Determine trading signal based on momentum and squeeze state"""
         mom = latest.get('Momentum', 0)
-        prev_mom = latest.get('Prev_Momentum', 0)
+        prev_mom = latest.get('Prev_Momentum', prev.get('Momentum', 0))
         fired = latest.get('Fired', False)
         squeeze_on = latest.get('Squeeze_On', False)
         
+        # Strong buy: Fired with positive momentum
         if fired and mom > 0:
             return SignalType.STRONG_BUY
-        elif fired and mom < 0:
+        
+        # Strong sell: Fired with negative momentum
+        if fired and mom < 0:
             return SignalType.STRONG_SELL
-        elif mom > 0:
-            if mom > prev_mom:
+        
+        # Buy signals (momentum based)
+        if mom > 0.02:  # Strong positive momentum
+            return SignalType.STRONG_BUY
+        elif mom > 0:  # Positive momentum
+            if mom > prev_mom:  # Momentum increasing
                 return SignalType.BUY
             else:
-                return SignalType.HOLD
-        else:
-            if mom > prev_mom:
-                return SignalType.WATCH
-            else:
-                return SignalType.SELL
+                return SignalType.WATCH  # Momentum decreasing but still positive
+        
+        # Negative momentum
+        if mom > -0.05 and mom > prev_mom:  # Improving from negative
+            return SignalType.WATCH  # Watch for reversal
+        
+        # Sell signals
+        if mom < -0.05:  # Strong negative momentum
+            return SignalType.STRONG_SELL
+        elif mom < prev_mom:  # Momentum deteriorating
+            return SignalType.SELL
+        
+        # Default
+        return SignalType.HOLD
     
     def _detect_pattern(self, latest: pd.Series) -> str:
         """Detect pattern type"""
