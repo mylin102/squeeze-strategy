@@ -46,8 +46,10 @@ def get_balanced_strategy(market: Market = Market.US) -> StrategyConfig:
     
     Combines squeeze and whale patterns.
     Backtest: US +199.81%
+    
+    Note: Bear market mode disabled for signal generation
     """
-    return StrategyConfig(
+    config = StrategyConfig(
         market=market,
         position_size_pct=100.0,
         max_single_position=10.0,
@@ -64,8 +66,9 @@ def get_balanced_strategy(market: Market = Market.US) -> StrategyConfig:
         holding_days=14,
         time_stop_days=None,
         allowed_regimes=None,
-        bear_market_mode=False,
+        bear_market_mode=False,  # Disabled for testing
     )
+    return config
 
 
 def get_conservative_strategy(market: Market = Market.US) -> StrategyConfig:

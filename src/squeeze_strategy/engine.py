@@ -133,10 +133,14 @@ class SqueezeStrategy:
             benchmark_data
         )
         
-        # Auto-apply bear market adjustments
-        if self.current_regime == MarketRegime.BEAR and not self.config.bear_market_mode:
-            self.config.apply_bear_market_adjustments()
-            print(f"[INFO] Bear market detected! Applied defensive adjustments.")
+        # Note: Auto bear market adjustments disabled for backtesting
+        # To enable defensive mode, manually set config.bear_market_mode = True
+        # if self.current_regime == MarketRegime.BEAR and not self.config.bear_market_mode:
+        #     self.config.apply_bear_market_adjustments()
+        #     print(f"[INFO] Bear market detected! Applied defensive adjustments.")
+        
+        print(f"[INFO] Market regime: {self.current_regime.value}")
+        return self.current_regime
     
     def scan_signals(
         self,
@@ -204,31 +208,38 @@ class SqueezeStrategy:
     def _calculate_indicators(self, df: pd.DataFrame) -> pd.DataFrame:
         """Calculate squeeze indicators"""
         import pandas_ta as ta
-        
+
         result = df.copy()
         
-        # TTM Squeeze
+        # Ensure column names are uppercase
+        result.columns = result.columns.str.upper()
+        
+        # TTM Squeeze - pass OHLC data explicitly
         try:
             sqz = ta.squeeze(
+                high=result['HIGH'],
+                low=result['LOW'],
+                close=result['CLOSE'],
                 bb_length=20, bb_std=2.0,
                 kc_length=20, kc_scalar=1.5,
                 lazy=True
             )
-            
+
             # Find squeeze columns
-            sqz_on_col = [c for c in sqz.columns if 'SQZ_ON' in c]
-            mom_col = [c for c in sqz.columns if c.startswith('SQZ_') and c not in ['SQZ_ON', 'SQZ_OFF', 'SQZ_NO']]
-            
+            sqz_on_col = [c for c in sqz.columns if 'SQZ_ON' in c.upper()]
+            mom_col = [c for c in sqz.columns if c.upper().startswith('SQZ_') and c.upper() not in ['SQZ_ON', 'SQZ_OFF', 'SQZ_NO']]
+
             if sqz_on_col:
                 result['Squeeze_On'] = sqz[sqz_on_col[0]].astype(bool)
             if mom_col:
                 result['Momentum'] = sqz[mom_col[0]].fillna(0)
-            
+
             # Fired detection
             result['Fired'] = (~result['Squeeze_On']) & (result['Squeeze_On'].shift(1) == True)
             result['Fired'] = result['Fired'].fillna(False)
-            
-        except Exception:
+
+        except Exception as e:
+            print(f"Indicator calculation error: {e}")
             result['Squeeze_On'] = False
             result['Momentum'] = 0
             result['Fired'] = False
