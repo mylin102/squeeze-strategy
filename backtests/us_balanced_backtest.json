@@ -1,0 +1,9 @@
+{
+  "market": "us",
+  "strategy": "balanced",
+  "market_regime": "bear_trend",
+  "tickers_scanned": 30,
+  "buy_signals": 0,
+  "sell_signals": 0,
+  "top_picks": []
+}
