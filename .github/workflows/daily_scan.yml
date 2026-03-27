@@ -65,7 +65,7 @@ jobs:
         mkdir -p exports logs configs
     
     - name: Run US market scan
-      if: github.event.inputs.market == 'us' || github.event_name == 'schedule'
+      if: github.event.inputs.market == 'us' || (github.event_name == 'schedule' && github.event.schedule == '30 21 * * 1-5')
       env:
         SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
         SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
@@ -76,7 +76,8 @@ jobs:
           --market us \
           --strategy balanced \
           --no-export \
-          --no-tracker
+          --no-tracker \
+          --force  # Force run for manual trigger
       continue-on-error: true
     
     - name: Run TW market scan
@@ -91,7 +92,8 @@ jobs:
           --market tw \
           --strategy baseline \
           --no-export \
-          --no-tracker
+          --no-tracker \
+          --force  # Force run for manual trigger
       continue-on-error: true
     
     - name: Run CN market scan
@@ -106,7 +108,8 @@ jobs:
           --market cn \
           --strategy baseline \
           --no-export \
-          --no-tracker
+          --no-tracker \
+          --force  # Force run for manual trigger
       continue-on-error: true
     
     - name: Upload reports
