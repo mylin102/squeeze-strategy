@@ -1,0 +1,96 @@
+# GitHub Actions workflow for daily stock picking
+#
+# This workflow runs the daily stock picker automatically.
+# Note: GitHub Actions has rate limits for API calls.
+# For production use, consider running on your own server.
+
+name: Daily Stock Picker
+
+on:
+  # Run on weekdays (Monday to Friday)
+  schedule:
+    # US market: 4:30 AM UTC (after US market close at 4:00 PM ET = 9:00 PM UTC)
+    - cron: '30 21 * * 1-5'  # US
+    # TW market: 9:00 AM UTC (after TW market close at 1:30 PM TW = 5:30 AM UTC)
+    - cron: '0 6 * * 1-5'   # TW
+  
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      market:
+        description: 'Market to scan (us, tw, cn)'
+        required: true
+        default: 'us'
+      strategy:
+        description: 'Strategy to use'
+        required: true
+        default: 'baseline'
+
+jobs:
+  daily-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        pip install yfinance pandas numpy jinja2 requests python-dotenv
+    
+    - name: Create directories
+      run: |
+        mkdir -p exports logs configs
+    
+    - name: Run US market scan
+      if: github.event.inputs.market == 'us' || github.event_name == 'schedule'
+      env:
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
+        LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+      run: |
+        python scripts/daily_stock_picker.py \
+          --market us \
+          --strategy balanced \
+          --no-export \
+          --no-tracker
+      continue-on-error: true
+    
+    - name: Run TW market scan
+      if: github.event.inputs.market == 'tw'
+      env:
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
+        LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+      run: |
+        python scripts/daily_stock_picker.py \
+          --market tw \
+          --strategy baseline \
+          --no-export \
+          --no-tracker
+      continue-on-error: true
+    
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: squeeze-reports-${{ github.run_id }}
+        path: exports/
+        retention-days: 30
+    
+    - name: Upload logs
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: squeeze-logs-${{ github.run_id }}
+        path: logs/
+        retention-days: 7

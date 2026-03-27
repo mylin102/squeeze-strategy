@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "squeeze-strategy"
+version = "1.0.0"
+description = "Advanced Squeeze Momentum Stock Selection Strategy with Dynamic Adjustments"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "typer>=0.9",
+    "rich>=13.0",
+    "pydantic>=2.0",
+    "yfinance>=0.2",
+    "pandas-ta>=0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+squeeze-strategy = "squeeze_strategy.cli:app"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["squeeze_strategy*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

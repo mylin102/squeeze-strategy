@@ -1,0 +1,2 @@
+[console_scripts]
+squeeze-strategy = squeeze_strategy.cli:app

@@ -1,0 +1,30 @@
+# Squeeze Daily Stock Picker - Cron Configuration
+# 
+# Edit with: crontab -e
+# View with: crontab -l
+#
+# This runs the daily stock picker at 4:30 PM Taiwan/China time
+# (after US market close at 4:00 PM ET, which is 4:00 AM next day TW)
+
+# Environment variables
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+MAILTO=""
+
+# Daily stock picker for US market (runs at 4:30 AM TW time, after US market close)
+30 4 * * 1-5 cd /Users/mylin/Documents/mylin102/squeeze-strategy && /usr/bin/python3 scripts/daily_stock_picker.py --market us --strategy balanced >> logs/daily_us.log 2>&1
+
+# Daily stock picker for Taiwan market (runs at 5:00 PM TW time, after TW market close)
+0 17 * * 1-5 cd /Users/mylin/Documents/mylin102/squeeze-strategy && /usr/bin/python3 scripts/daily_stock_picker.py --market tw --strategy baseline >> logs/daily_tw.log 2>&1
+
+# Weekly summary on Monday morning (9:00 AM TW time)
+0 9 * * 1 cd /Users/mylin/Documents/mylin102/squeeze-strategy && /usr/bin/python3 scripts/weekly_summary.py >> logs/weekly.log 2>&1
+
+# Clean old logs monthly (first day of month at 2:00 AM)
+0 2 1 * * find /Users/mylin/Documents/mylin102/squeeze-strategy/logs -name "*.log" -mtime +30 -delete
+
+# Note: Adjust paths and times based on your:
+# 1. Python installation path (which python3)
+# 2. Project directory
+# 3. Preferred execution times
+# 4. Timezone settings

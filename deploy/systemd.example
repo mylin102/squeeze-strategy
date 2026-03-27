@@ -1,0 +1,91 @@
+# Squeeze Daily Stock Picker - systemd service configuration
+#
+# For systems using systemd (Ubuntu 16.04+, CentOS 7+, etc.)
+#
+# Installation:
+# 1. Copy these files to /etc/systemd/system/
+# 2. Run: sudo systemctl daemon-reload
+# 3. Run: sudo systemctl enable squeeze-daily-us.timer
+# 4. Run: sudo systemctl start squeeze-daily-us.timer
+#
+# Check status:
+#   sudo systemctl status squeeze-daily-us.timer
+#   sudo systemctl status squeeze-daily-us.service
+#
+# View logs:
+#   journalctl -u squeeze-daily-us.service
+
+# ============================================
+# US Market Scanner Service
+# ============================================
+
+[Unit]
+Description=Squeeze Daily Stock Picker - US Market
+After=network.target
+
+[Service]
+Type=oneshot
+User=mylin
+WorkingDirectory=/Users/mylin/Documents/mylin102/squeeze-strategy
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/Users/mylin/Documents/mylin102/squeeze-strategy/src"
+ExecStart=/usr/bin/python3 scripts/daily_stock_picker.py --market us --strategy balanced
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+# ============================================
+# US Market Scanner Timer
+# ============================================
+
+[Unit]
+Description=Run Squeeze US Stock Picker daily at 4:30 AM (TW time)
+Requires=squeeze-daily-us.service
+
+[Timer]
+# Run at 4:30 AM Taiwan time (which is 4:30 AM after US market close)
+# Adjust OnCalendar based on your timezone
+OnCalendar=*-*-* 04:30:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
+# ============================================
+# Taiwan Market Scanner Service
+# ============================================
+
+[Unit]
+Description=Squeeze Daily Stock Picker - Taiwan Market
+After=network.target
+
+[Service]
+Type=oneshot
+User=mylin
+WorkingDirectory=/Users/mylin/Documents/mylin102/squeeze-strategy
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONPATH=/Users/mylin/Documents/mylin102/squeeze-strategy/src"
+ExecStart=/usr/bin/python3 scripts/daily_stock_picker.py --market tw --strategy baseline
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+# ============================================
+# Taiwan Market Scanner Timer
+# ============================================
+
+[Unit]
+Description=Run Squeeze TW Stock Picker daily at 5:00 PM (TW time)
+Requires=squeeze-daily-tw.service
+
+[Timer]
+# Run at 5:00 PM Taiwan time (after TW market close at 1:30 PM)
+OnCalendar=*-*-* 17:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
