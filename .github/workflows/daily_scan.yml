@@ -15,6 +15,8 @@ on:
     - cron: '0 6 * * 1-5'   # TW
     # CN market: 11:00 AM UTC (after CN market close at 3:00 PM CN = 7:00 AM UTC)
     - cron: '0 7 * * 1-5'   # CN
+    # Sector Rotation (TW): 10:00 AM UTC (6:00 PM TW, after market close + data update)
+    - cron: '0 10 * * 1-5'  # TW Sector Rotation
   
   # Allow manual trigger
   workflow_dispatch:
@@ -40,6 +42,14 @@ on:
           - aggressive
           - bear_market
           - scalping
+      sector_rotation:
+        description: 'Run sector rotation analysis'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
 
 jobs:
   daily-scan:
@@ -111,7 +121,18 @@ jobs:
           --no-tracker \
           --force  # Force run for manual trigger
       continue-on-error: true
-    
+
+    - name: Run Sector Rotation (TW)
+      if: github.event.schedule == '0 10 * * 1-5' || github.event.inputs.sector_rotation == 'true'
+      run: |
+        python scripts/sector_rotation.py \
+          --market tw \
+          --top-sectors 5 \
+          --top-stocks 10 \
+          --period 20 \
+          --data-dir backtests/tw_data
+      continue-on-error: true
+
     - name: Upload reports
       uses: actions/upload-artifact@v4
       if: always()
@@ -119,7 +140,7 @@ jobs:
         name: squeeze-reports-${{ github.run_id }}
         path: exports/
         retention-days: 30
-    
+
     - name: Upload logs
       uses: actions/upload-artifact@v4
       if: always()
