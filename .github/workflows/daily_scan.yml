@@ -13,6 +13,8 @@ on:
     - cron: '30 21 * * 1-5'  # US
     # TW market: 9:00 AM UTC (after TW market close at 1:30 PM TW = 5:30 AM UTC)
     - cron: '0 6 * * 1-5'   # TW
+    # CN market: 11:00 AM UTC (after CN market close at 3:00 PM CN = 7:00 AM UTC)
+    - cron: '0 7 * * 1-5'   # CN
   
   # Allow manual trigger
   workflow_dispatch:
@@ -21,10 +23,23 @@ on:
         description: 'Market to scan (us, tw, cn)'
         required: true
         default: 'us'
+        type: choice
+        options:
+          - us
+          - tw
+          - cn
       strategy:
         description: 'Strategy to use'
         required: true
         default: 'baseline'
+        type: choice
+        options:
+          - baseline
+          - balanced
+          - conservative
+          - aggressive
+          - bear_market
+          - scalping
 
 jobs:
   daily-scan:
@@ -74,6 +89,21 @@ jobs:
       run: |
         python scripts/daily_stock_picker.py \
           --market tw \
+          --strategy baseline \
+          --no-export \
+          --no-tracker
+      continue-on-error: true
+    
+    - name: Run CN market scan
+      if: github.event.inputs.market == 'cn'
+      env:
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        SMTP_RECIPIENTS: ${{ secrets.SMTP_RECIPIENTS }}
+        LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+      run: |
+        python scripts/daily_stock_picker.py \
+          --market cn \
           --strategy baseline \
           --no-export \
           --no-tracker
