@@ -1,0 +1,238 @@
+{
+  "total": 47,
+  "success": 46,
+  "failed": 1,
+  "tickers": {
+    "2330.TW": {
+      "days": 243,
+      "latest_close": 1820.0,
+      "name": "台積電"
+    },
+    "2317.TW": {
+      "days": 243,
+      "latest_close": 199.5,
+      "name": "鴻海"
+    },
+    "2454.TW": {
+      "days": 243,
+      "latest_close": 1585.0,
+      "name": "聯發科"
+    },
+    "2303.TW": {
+      "days": 243,
+      "latest_close": 57.79999923706055,
+      "name": "聯電"
+    },
+    "2357.TW": {
+      "days": 243,
+      "latest_close": 577.0,
+      "name": "華碩"
+    },
+    "2353.TW": {
+      "days": 243,
+      "latest_close": 27.399999618530273,
+      "name": "宏碁"
+    },
+    "2881.TW": {
+      "days": 243,
+      "latest_close": 87.69999694824219,
+      "name": "富邦金"
+    },
+    "2882.TW": {
+      "days": 243,
+      "latest_close": 70.5999984741211,
+      "name": "國泰金"
+    },
+    "2883.TW": {
+      "days": 243,
+      "latest_close": 19.850000381469727,
+      "name": "開發金"
+    },
+    "2884.TW": {
+      "days": 243,
+      "latest_close": 32.20000076293945,
+      "name": "玉山金"
+    },
+    "2885.TW": {
+      "days": 243,
+      "latest_close": 45.29999923706055,
+      "name": "元大金"
+    },
+    "2886.TW": {
+      "days": 243,
+      "latest_close": 39.099998474121094,
+      "name": "兆豐金"
+    },
+    "2891.TW": {
+      "days": 243,
+      "latest_close": 53.0,
+      "name": "中信金"
+    },
+    "2892.TW": {
+      "days": 243,
+      "latest_close": 28.450000762939453,
+      "name": "第一金"
+    },
+    "1301.TW": {
+      "days": 243,
+      "latest_close": 46.900001525878906,
+      "name": "台塑"
+    },
+    "1303.TW": {
+      "days": 243,
+      "latest_close": 74.19999694824219,
+      "name": "南亞"
+    },
+    "1326.TW": {
+      "days": 243,
+      "latest_close": 44.25,
+      "name": "台化"
+    },
+    "2002.TW": {
+      "days": 243,
+      "latest_close": 19.600000381469727,
+      "name": "中鋼"
+    },
+    "1216.TW": {
+      "days": 243,
+      "latest_close": 72.0,
+      "name": "統一"
+    },
+    "1231.TW": {
+      "days": 243,
+      "latest_close": 92.19999694824219,
+      "name": "味全"
+    },
+    "2382.TW": {
+      "days": 243,
+      "latest_close": 289.0,
+      "name": "廣達"
+    },
+    "2324.TW": {
+      "days": 243,
+      "latest_close": 30.25,
+      "name": "仁寶"
+    },
+    "2301.TW": {
+      "days": 243,
+      "latest_close": 152.0,
+      "name": "光寶科"
+    },
+    "2345.TW": {
+      "days": 243,
+      "latest_close": 1655.0,
+      "name": "明泰"
+    },
+    "2409.TW": {
+      "days": 243,
+      "latest_close": 14.399999618530273,
+      "name": "友達"
+    },
+    "2354.TW": {
+      "days": 243,
+      "latest_close": 52.20000076293945,
+      "name": "微星"
+    },
+    "2376.TW": {
+      "days": 243,
+      "latest_close": 235.0,
+      "name": "建興電"
+    },
+    "2305.TW": {
+      "days": 243,
+      "latest_close": 17.299999237060547,
+      "name": "全漢"
+    },
+    "2344.TW": {
+      "days": 243,
+      "latest_close": 92.4000015258789,
+      "name": "華邦電"
+    },
+    "2337.TW": {
+      "days": 243,
+      "latest_close": 125.0,
+      "name": "旺宏"
+    },
+    "2302.TW": {
+      "days": 243,
+      "latest_close": 18.200000762939453,
+      "name": "英業達"
+    },
+    "2379.TW": {
+      "days": 243,
+      "latest_close": 494.5,
+      "name": "瑞昱"
+    },
+    "2377.TW": {
+      "days": 243,
+      "latest_close": 90.4000015258789,
+      "name": "華立"
+    },
+    "2342.TW": {
+      "days": 243,
+      "latest_close": 30.0,
+      "name": "茂矽"
+    },
+    "2374.TW": {
+      "days": 243,
+      "latest_close": 72.19999694824219,
+      "name": "佳世達"
+    },
+    "2360.TW": {
+      "days": 243,
+      "latest_close": 1615.0,
+      "name": "致茂"
+    },
+    "2308.TW": {
+      "days": 243,
+      "latest_close": 1510.0,
+      "name": "台達電"
+    },
+    "2369.TW": {
+      "days": 243,
+      "latest_close": 30.700000762939453,
+      "name": "聯詠"
+    },
+    "3703.TW": {
+      "days": 243,
+      "latest_close": 22.700000762939453,
+      "name": "欣陸"
+    },
+    "2466.TW": {
+      "days": 243,
+      "latest_close": 48.54999923706055,
+      "name": "神達"
+    },
+    "2355.TW": {
+      "days": 243,
+      "latest_close": 50.5,
+      "name": "敬鵬"
+    },
+    "2393.TW": {
+      "days": 243,
+      "latest_close": 69.5,
+      "name": "億光"
+    },
+    "2412.TW": {
+      "days": 243,
+      "latest_close": 134.0,
+      "name": "中華電"
+    },
+    "2348.TW": {
+      "days": 243,
+      "latest_close": 78.69999694824219,
+      "name": "光陽"
+    },
+    "2207.TW": {
+      "days": 243,
+      "latest_close": 497.5,
+      "name": "和泰車"
+    },
+    "2204.TW": {
+      "days": 243,
+      "latest_close": 55.5,
+      "name": "中華車"
+    }
+  },
+  "timestamp": "2026-03-28T06:12:07.414681"
+}
