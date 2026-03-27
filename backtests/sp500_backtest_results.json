@@ -1,0 +1,9 @@
+{
+  "market": "us",
+  "universe": "S&P 500",
+  "tickers_scanned": 122,
+  "buy_signals": 0,
+  "sell_signals": 0,
+  "market_regime": "bear_trend",
+  "top_picks": []
+}

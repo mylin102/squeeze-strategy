@@ -1,0 +1,618 @@
+{
+  "total": 135,
+  "success": 128,
+  "failed": 7,
+  "tickers": {
+    "AAPL": {
+      "days": 251,
+      "latest_close": 248.8000030517578,
+      "name": "AAPL"
+    },
+    "MSFT": {
+      "days": 251,
+      "latest_close": 356.7699890136719,
+      "name": "MSFT"
+    },
+    "GOOGL": {
+      "days": 251,
+      "latest_close": 274.3399963378906,
+      "name": "GOOGL"
+    },
+    "AMZN": {
+      "days": 251,
+      "latest_close": 199.33999633789062,
+      "name": "AMZN"
+    },
+    "NVDA": {
+      "days": 251,
+      "latest_close": 167.52000427246094,
+      "name": "NVDA"
+    },
+    "META": {
+      "days": 251,
+      "latest_close": 525.719970703125,
+      "name": "META"
+    },
+    "TSLA": {
+      "days": 251,
+      "latest_close": 361.8299865722656,
+      "name": "TSLA"
+    },
+    "JPM": {
+      "days": 251,
+      "latest_close": 282.8399963378906,
+      "name": "JPM"
+    },
+    "JNJ": {
+      "days": 251,
+      "latest_close": 240.4499969482422,
+      "name": "JNJ"
+    },
+    "V": {
+      "days": 251,
+      "latest_close": 295.5199890136719,
+      "name": "V"
+    },
+    "PG": {
+      "days": 251,
+      "latest_close": 142.7100067138672,
+      "name": "PG"
+    },
+    "UNH": {
+      "days": 251,
+      "latest_close": 259.0199890136719,
+      "name": "UNH"
+    },
+    "HD": {
+      "days": 251,
+      "latest_close": 321.6499938964844,
+      "name": "HD"
+    },
+    "MA": {
+      "days": 251,
+      "latest_close": 484.239990234375,
+      "name": "MA"
+    },
+    "DIS": {
+      "days": 251,
+      "latest_close": 92.41999816894531,
+      "name": "DIS"
+    },
+    "PYPL": {
+      "days": 251,
+      "latest_close": 43.59000015258789,
+      "name": "PYPL"
+    },
+    "BAC": {
+      "days": 251,
+      "latest_close": 46.970001220703125,
+      "name": "BAC"
+    },
+    "VZ": {
+      "days": 251,
+      "latest_close": 50.310001373291016,
+      "name": "VZ"
+    },
+    "ADBE": {
+      "days": 251,
+      "latest_close": 234.83999633789062,
+      "name": "ADBE"
+    },
+    "CMCSA": {
+      "days": 251,
+      "latest_close": 28.329999923706055,
+      "name": "CMCSA"
+    },
+    "NFLX": {
+      "days": 251,
+      "latest_close": 93.43000030517578,
+      "name": "NFLX"
+    },
+    "XOM": {
+      "days": 251,
+      "latest_close": 170.99000549316406,
+      "name": "XOM"
+    },
+    "PFE": {
+      "days": 251,
+      "latest_close": 27.040000915527344,
+      "name": "PFE"
+    },
+    "KO": {
+      "days": 251,
+      "latest_close": 75.70999908447266,
+      "name": "KO"
+    },
+    "PEP": {
+      "days": 251,
+      "latest_close": 153.0399932861328,
+      "name": "PEP"
+    },
+    "T": {
+      "days": 251,
+      "latest_close": 29.100000381469727,
+      "name": "T"
+    },
+    "MRK": {
+      "days": 251,
+      "latest_close": 119.62999725341797,
+      "name": "MRK"
+    },
+    "ABT": {
+      "days": 251,
+      "latest_close": 103.98999786376953,
+      "name": "ABT"
+    },
+    "WMT": {
+      "days": 251,
+      "latest_close": 122.88999938964844,
+      "name": "WMT"
+    },
+    "CSCO": {
+      "days": 251,
+      "latest_close": 79.91999816894531,
+      "name": "CSCO"
+    },
+    "CVX": {
+      "days": 251,
+      "latest_close": 211.14999389648438,
+      "name": "CVX"
+    },
+    "INTC": {
+      "days": 251,
+      "latest_close": 43.130001068115234,
+      "name": "INTC"
+    },
+    "CRM": {
+      "days": 251,
+      "latest_close": 179.30999755859375,
+      "name": "CRM"
+    },
+    "ORCL": {
+      "days": 251,
+      "latest_close": 139.66000366210938,
+      "name": "ORCL"
+    },
+    "IBM": {
+      "days": 251,
+      "latest_close": 236.33999633789062,
+      "name": "IBM"
+    },
+    "QCOM": {
+      "days": 251,
+      "latest_close": 127.11000061035156,
+      "name": "QCOM"
+    },
+    "TXN": {
+      "days": 251,
+      "latest_close": 190.3300018310547,
+      "name": "TXN"
+    },
+    "AMD": {
+      "days": 251,
+      "latest_close": 201.99000549316406,
+      "name": "AMD"
+    },
+    "AVGO": {
+      "days": 251,
+      "latest_close": 300.67999267578125,
+      "name": "AVGO"
+    },
+    "ACN": {
+      "days": 251,
+      "latest_close": 192.60000610351562,
+      "name": "ACN"
+    },
+    "COST": {
+      "days": 251,
+      "latest_close": 983.8599853515625,
+      "name": "COST"
+    },
+    "NKE": {
+      "days": 251,
+      "latest_close": 51.369998931884766,
+      "name": "NKE"
+    },
+    "MCD": {
+      "days": 251,
+      "latest_close": 305.8999938964844,
+      "name": "MCD"
+    },
+    "LLY": {
+      "days": 251,
+      "latest_close": 878.239990234375,
+      "name": "LLY"
+    },
+    "TMO": {
+      "days": 251,
+      "latest_close": 473.3599853515625,
+      "name": "TMO"
+    },
+    "ABBV": {
+      "days": 251,
+      "latest_close": 209.39999389648438,
+      "name": "ABBV"
+    },
+    "DHR": {
+      "days": 251,
+      "latest_close": 181.52000427246094,
+      "name": "DHR"
+    },
+    "NEE": {
+      "days": 251,
+      "latest_close": 91.4000015258789,
+      "name": "NEE"
+    },
+    "UNP": {
+      "days": 251,
+      "latest_close": 238.7899932861328,
+      "name": "UNP"
+    },
+    "PM": {
+      "days": 251,
+      "latest_close": 163.5399932861328,
+      "name": "PM"
+    },
+    "RTX": {
+      "days": 251,
+      "latest_close": 189.7100067138672,
+      "name": "RTX"
+    },
+    "HON": {
+      "days": 251,
+      "latest_close": 223.1199951171875,
+      "name": "HON"
+    },
+    "LOW": {
+      "days": 251,
+      "latest_close": 230.30999755859375,
+      "name": "LOW"
+    },
+    "UPS": {
+      "days": 251,
+      "latest_close": 94.80000305175781,
+      "name": "UPS"
+    },
+    "MS": {
+      "days": 251,
+      "latest_close": 158.38999938964844,
+      "name": "MS"
+    },
+    "GS": {
+      "days": 251,
+      "latest_close": 802.8900146484375,
+      "name": "GS"
+    },
+    "CAT": {
+      "days": 251,
+      "latest_close": 695.4000244140625,
+      "name": "CAT"
+    },
+    "BA": {
+      "days": 251,
+      "latest_close": 190.52000427246094,
+      "name": "BA"
+    },
+    "GE": {
+      "days": 251,
+      "latest_close": 282.80999755859375,
+      "name": "GE"
+    },
+    "MMM": {
+      "days": 251,
+      "latest_close": 143.0399932861328,
+      "name": "MMM"
+    },
+    "AXP": {
+      "days": 251,
+      "latest_close": 292.2699890136719,
+      "name": "AXP"
+    },
+    "DE": {
+      "days": 251,
+      "latest_close": 566.6400146484375,
+      "name": "DE"
+    },
+    "SPGI": {
+      "days": 251,
+      "latest_close": 406.239990234375,
+      "name": "SPGI"
+    },
+    "BLK": {
+      "days": 251,
+      "latest_close": 933.8499755859375,
+      "name": "BLK"
+    },
+    "GILD": {
+      "days": 251,
+      "latest_close": 134.25,
+      "name": "GILD"
+    },
+    "ISRG": {
+      "days": 251,
+      "latest_close": 452.6600036621094,
+      "name": "ISRG"
+    },
+    "REGN": {
+      "days": 251,
+      "latest_close": 737.7100219726562,
+      "name": "REGN"
+    },
+    "VRTX": {
+      "days": 251,
+      "latest_close": 433.07000732421875,
+      "name": "VRTX"
+    },
+    "BIIB": {
+      "days": 251,
+      "latest_close": 183.83999633789062,
+      "name": "BIIB"
+    },
+    "ILMN": {
+      "days": 251,
+      "latest_close": 117.66999816894531,
+      "name": "ILMN"
+    },
+    "MNST": {
+      "days": 251,
+      "latest_close": 71.83000183105469,
+      "name": "MNST"
+    },
+    "KDP": {
+      "days": 251,
+      "latest_close": 26.229999542236328,
+      "name": "KDP"
+    },
+    "LULU": {
+      "days": 251,
+      "latest_close": 145.85000610351562,
+      "name": "LULU"
+    },
+    "MRVL": {
+      "days": 251,
+      "latest_close": 94.87999725341797,
+      "name": "MRVL"
+    },
+    "PANW": {
+      "days": 251,
+      "latest_close": 147.02000427246094,
+      "name": "PANW"
+    },
+    "ADSK": {
+      "days": 251,
+      "latest_close": 229.83999633789062,
+      "name": "ADSK"
+    },
+    "NXPI": {
+      "days": 251,
+      "latest_close": 191.66000366210938,
+      "name": "NXPI"
+    },
+    "MU": {
+      "days": 251,
+      "latest_close": 357.2200012207031,
+      "name": "MU"
+    },
+    "AMAT": {
+      "days": 251,
+      "latest_close": 337.1700134277344,
+      "name": "AMAT"
+    },
+    "LRCX": {
+      "days": 251,
+      "latest_close": 211.41000366210938,
+      "name": "LRCX"
+    },
+    "KLAC": {
+      "days": 251,
+      "latest_close": 1443.2099609375,
+      "name": "KLAC"
+    },
+    "CDNS": {
+      "days": 251,
+      "latest_close": 271.7699890136719,
+      "name": "CDNS"
+    },
+    "SNPS": {
+      "days": 251,
+      "latest_close": 380.4700012207031,
+      "name": "SNPS"
+    },
+    "FTNT": {
+      "days": 251,
+      "latest_close": 78.19999694824219,
+      "name": "FTNT"
+    },
+    "NOW": {
+      "days": 251,
+      "latest_close": 99.41000366210938,
+      "name": "NOW"
+    },
+    "INTU": {
+      "days": 251,
+      "latest_close": 416.44000244140625,
+      "name": "INTU"
+    },
+    "ADI": {
+      "days": 251,
+      "latest_close": 307.44000244140625,
+      "name": "ADI"
+    },
+    "MCHP": {
+      "days": 251,
+      "latest_close": 62.0,
+      "name": "MCHP"
+    },
+    "ON": {
+      "days": 251,
+      "latest_close": 58.349998474121094,
+      "name": "ON"
+    },
+    "MPWR": {
+      "days": 251,
+      "latest_close": 1053.010009765625,
+      "name": "MPWR"
+    },
+    "ENPH": {
+      "days": 251,
+      "latest_close": 37.84000015258789,
+      "name": "ENPH"
+    },
+    "SEDG": {
+      "days": 251,
+      "latest_close": 51.7599983215332,
+      "name": "SEDG"
+    },
+    "FSLR": {
+      "days": 251,
+      "latest_close": 190.2899932861328,
+      "name": "FSLR"
+    },
+    "RUN": {
+      "days": 251,
+      "latest_close": 12.600000381469727,
+      "name": "RUN"
+    },
+    "SPWR": {
+      "days": 251,
+      "latest_close": 1.25,
+      "name": "SPWR"
+    },
+    "CSIQ": {
+      "days": 251,
+      "latest_close": 13.449999809265137,
+      "name": "CSIQ"
+    },
+    "JKS": {
+      "days": 251,
+      "latest_close": 25.290000915527344,
+      "name": "JKS"
+    },
+    "DQ": {
+      "days": 251,
+      "latest_close": 21.219999313354492,
+      "name": "DQ"
+    },
+    "MAXN": {
+      "days": 251,
+      "latest_close": 1.4800000190734863,
+      "name": "MAXN"
+    },
+    "ARBB": {
+      "days": 251,
+      "latest_close": 4.300000190734863,
+      "name": "ARBB"
+    },
+    "CLSK": {
+      "days": 251,
+      "latest_close": 8.65999984741211,
+      "name": "CLSK"
+    },
+    "RIOT": {
+      "days": 251,
+      "latest_close": 12.800000190734863,
+      "name": "RIOT"
+    },
+    "MARA": {
+      "days": 251,
+      "latest_close": 8.020000457763672,
+      "name": "MARA"
+    },
+    "COIN": {
+      "days": 251,
+      "latest_close": 161.13999938964844,
+      "name": "COIN"
+    },
+    "SYF": {
+      "days": 251,
+      "latest_close": 65.36000061035156,
+      "name": "SYF"
+    },
+    "COF": {
+      "days": 251,
+      "latest_close": 176.10000610351562,
+      "name": "COF"
+    },
+    "ALLY": {
+      "days": 251,
+      "latest_close": 37.790000915527344,
+      "name": "ALLY"
+    },
+    "GM": {
+      "days": 251,
+      "latest_close": 72.9800033569336,
+      "name": "GM"
+    },
+    "F": {
+      "days": 251,
+      "latest_close": 11.369999885559082,
+      "name": "F"
+    },
+    "STLA": {
+      "days": 251,
+      "latest_close": 6.710000038146973,
+      "name": "STLA"
+    },
+    "TM": {
+      "days": 251,
+      "latest_close": 206.72999572753906,
+      "name": "TM"
+    },
+    "HMC": {
+      "days": 251,
+      "latest_close": 24.34000015258789,
+      "name": "HMC"
+    },
+    "RACE": {
+      "days": 251,
+      "latest_close": 317.3999938964844,
+      "name": "RACE"
+    },
+    "LCID": {
+      "days": 251,
+      "latest_close": 9.399999618530273,
+      "name": "LCID"
+    },
+    "RIVN": {
+      "days": 251,
+      "latest_close": 14.770000457763672,
+      "name": "RIVN"
+    },
+    "NIO": {
+      "days": 251,
+      "latest_close": 5.309999942779541,
+      "name": "NIO"
+    },
+    "XPEV": {
+      "days": 251,
+      "latest_close": 16.93000030517578,
+      "name": "XPEV"
+    },
+    "LI": {
+      "days": 251,
+      "latest_close": 17.459999084472656,
+      "name": "LI"
+    },
+    "BYD": {
+      "days": 251,
+      "latest_close": 80.16000366210938,
+      "name": "BYD"
+    },
+    "VWAGY": {
+      "days": 251,
+      "latest_close": 10.079999923706055,
+      "name": "VWAGY"
+    },
+    "NSANY": {
+      "days": 251,
+      "latest_close": 4.21999979019165,
+      "name": "NSANY"
+    },
+    "FUJIY": {
+      "days": 251,
+      "latest_close": 9.15999984741211,
+      "name": "FUJIY"
+    }
+  },
+  "timestamp": "2026-03-28T05:50:48.622364"
+}
