@@ -64,7 +64,6 @@ if $PYTHON scripts/daily_recommendations.py \
     --max-positions "$MAX_POSITIONS" \
     --max-loss "$MAX_LOSS" \
     --stop-loss "$STOP_LOSS" \
-    --no-notify \
     2>&1 | tee -a "$LOG_FILE"; then
     log "✅ 建議清單生成成功"
 else
@@ -72,28 +71,43 @@ else
     exit 1
 fi
 
-# 步驟 2: 執行模擬/實際交易
+# 步驟 2: 執行模擬/實際交易 + 記錄資金變化
 log ""
-log "[步驟 2/3] 執行交易..."
-if $PYTHON scripts/auto_execute_trades.py \
-    --mode "$MODE" \
-    --market "$MARKET" \
-    2>&1 | tee -a "$LOG_FILE"; then
-    log "✅ 交易執行成功"
+log "[步驟 2/3] 執行交易並記錄資金變化..."
+
+# 讀取建議清單並更新投資組合
+RECOMMENDATIONS_FILE=$(ls -t "$PROJECT_DIR/exports/daily_recommendations_${MARKET}_$(date +%Y-%m-%d).csv" 2>/dev/null | head -1)
+
+if [ -n "$RECOMMENDATIONS_FILE" ] && [ -f "$RECOMMENDATIONS_FILE" ]; then
+    log "   使用建議清單：$RECOMMENDATIONS_FILE"
+    
+    # 讀取 CSV 並逐筆更新投資組合
+    tail -n +2 "$RECOMMENDATIONS_FILE" | while IFS=',' read -r ticker name entry_price stop_loss_price shares risk_per_share max_loss note; do
+        # 買入並記錄
+        $PYTHON scripts/portfolio_manager.py --action add \
+            --ticker "$ticker" \
+            --price "$entry_price" \
+            --quantity "$shares" \
+            >> "$LOG_FILE" 2>&1
+    done
+    
+    log "✅ 投資組合已更新"
 else
-    error "交易執行失敗"
-    exit 1
+    log "⚠️  找不到建議清單，跳過交易執行"
 fi
 
-# 步驟 3: 生成績效報告
+# 步驟 3: 生成投資組合績效報告
 log ""
-log "[步驟 3/3] 生成績效報告..."
-if $PYTHON scripts/track_performance.py \
-    --market "$MARKET" \
+log "[步驟 3/3] 生成投資組合績效報告..."
+if $PYTHON scripts/portfolio_manager.py \
+    --action status \
     2>&1 | tee -a "$LOG_FILE"; then
-    log "✅ 績效報告生成成功"
+    log "✅ 投資組合狀態檢視成功"
+    
+    # 生成報告
+    $PYTHON scripts/portfolio_manager.py --action report >> "$LOG_FILE" 2>&1
 else
-    log "⚠️  績效報告生成失敗（可能是第一天執行）"
+    log "⚠️  投資組合狀態檢視失敗"
 fi
 
 # 完成
