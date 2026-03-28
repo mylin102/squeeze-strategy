@@ -1,12 +1,12 @@
 {
   "date": "2026-03-28",
   "total_positions": 10,
-  "total_pnl": 5183.493649496982,
-  "total_max_loss": 9712.400000000001,
-  "risk_adjusted_return": 53.36985348108584,
+  "total_pnl": 62842.01625932752,
+  "total_max_loss": 98150.0,
+  "risk_adjusted_return": 64.02650663201989,
   "winning_count": 7,
   "losing_count": 3,
   "stopped_count": 0,
   "win_rate": 70.0,
-  "avg_return": 5.604102078580248
+  "avg_return": 5.60410207858025
 }

@@ -39,7 +39,7 @@ def simulate_current_prices(df: pd.DataFrame, days_held: int = 5) -> pd.DataFram
     # 模擬價格變化 (-10% 到 +20%)
     df = df.copy()
     df['price_change_pct'] = np.random.uniform(-0.10, 0.20, len(df))
-    df['current_price'] = df['進場價'] * (1 + df['price_change_pct'])
+    df['current_price'] = df['entry_price'] * (1 + df['price_change_pct'])
     
     return df
 
@@ -47,21 +47,21 @@ def simulate_current_prices(df: pd.DataFrame, days_held: int = 5) -> pd.DataFram
 def calculate_performance(df: pd.DataFrame) -> pd.DataFrame:
     """計算績效"""
     # 每股損益
-    df['每股損益'] = df['current_price'] - df['進場價']
+    df['pnl_per_share'] = df['current_price'] - df['entry_price']
     
     # 總損益
-    df['總損益'] = df['每股損益'] * df['股數']
+    df['total_pnl'] = df['pnl_per_share'] * df['shares']
     
     # 報酬率
-    df['報酬率'] = df['每股損益'] / df['進場價'] * 100
+    df['return_pct'] = df['pnl_per_share'] / df['entry_price'] * 100
     
     # 是否觸及停損
-    df['已停損'] = df['current_price'] <= df['停損價']
-    df['狀態'] = df['已停損'].apply(lambda x: '🛑 已停損' if x else '📈 持有中')
+    df['stopped_out'] = df['current_price'] <= df['stop_loss_price']
+    df['status'] = df['stopped_out'].apply(lambda x: '🛑 已停損' if x else '📈 持有中')
     
     # 實際虧損 (如果停損)
-    df['實際虧損'] = df.apply(
-        lambda row: row['最大虧損'] if row['已停損'] else -row['總損益'],
+    df['actual_loss'] = df.apply(
+        lambda row: row['max_loss'] if row['stopped_out'] else -row['total_pnl'],
         axis=1
     )
     
@@ -77,25 +77,26 @@ def print_performance_report(df: pd.DataFrame):
     print(f"{'代號':<12} {'名稱':<15} {'進場價':>10} {'現價':>10} {'報酬率':>10} "
           f"{'每股損益':>10} {'總損益':>12} {'最大虧損':>10} {'狀態':<12} {'備註':<25}")
     print("-"*130)
-    
+
     for _, row in df.iterrows():
-        print(f"{row['代號']:<12} {row['名稱']:<15} {row['進場價']:>10.2f} "
-              f"{row['current_price']:>10.2f} {row['報酬率']:>+10.2f}% "
-              f"{row['每股損益']:>+10.2f} {row['總損益']:>+12.2f} {row['最大虧損']:>10.2f} "
-              f"{row['狀態']:<12} {row['備註']:<25}")
-    
+        status = '🛑 已停損' if row['stopped_out'] else '📈 持有中'
+        print(f"{row['ticker']:<12} {row['name']:<15} {row['entry_price']:>10.2f} "
+              f"{row['current_price']:>10.2f} {row['return_pct']:>+10.2f}% "
+              f"{row['pnl_per_share']:>+10.2f} {row['total_pnl']:>+12.2f} {row['max_loss']:>10.2f} "
+              f"{status:<12} {row.get('note', ''):<25}")
+
     print("-"*130)
-    
+
     # 統計
-    total_pnl = df['總損益'].sum()
-    total_max_loss = df['最大虧損'].sum()
-    winning = len(df[df['總損益'] > 0])
-    losing = len(df[df['總損益'] < 0])
-    stopped = len(df[df['已停損']])
-    avg_return = df['報酬率'].mean()
-    best_trade = df.loc[df['總損益'].idxmax()]
-    worst_trade = df.loc[df['總損益'].idxmin()]
-    
+    total_pnl = df['total_pnl'].sum()
+    total_max_loss = df['max_loss'].sum()
+    winning = len(df[df['total_pnl'] > 0])
+    losing = len(df[df['total_pnl'] < 0])
+    stopped = len(df[df['stopped_out']])
+    avg_return = df['return_pct'].mean()
+    best_trade = df.loc[df['total_pnl'].idxmax()]
+    worst_trade = df.loc[df['total_pnl'].idxmin()]
+
     print()
     print(f"總損益：{total_pnl:+,.2f} 元")
     print(f"總風險暴露：{total_max_loss:,.2f} 元")
@@ -105,8 +106,8 @@ def print_performance_report(df: pd.DataFrame):
     print(f"勝率：{winning/len(df)*100:.1f}%")
     print(f"平均報酬率：{avg_return:+.2f}%")
     print()
-    print(f"最佳交易：{best_trade['代號']} ({best_trade['總損益']:+,.2f}元)")
-    print(f"最差交易：{worst_trade['代號']} ({worst_trade['總損益']:+,.2f}元)")
+    print(f"最佳交易：{best_trade['ticker']} ({best_trade['total_pnl']:+,.2f}元)")
+    print(f"最差交易：{worst_trade['ticker']} ({worst_trade['total_pnl']:+,.2f}元)")
     print("="*130)
 
 
@@ -126,14 +127,14 @@ def save_performance_report(df: pd.DataFrame, output_dir: str = "exports"):
     summary = {
         'date': today,
         'total_positions': len(df),
-        'total_pnl': float(df['總損益'].sum()),
-        'total_max_loss': float(df['最大虧損'].sum()),
-        'risk_adjusted_return': float(df['總損益'].sum() / df['最大虧損'].sum() * 100),
-        'winning_count': int(len(df[df['總損益'] > 0])),
-        'losing_count': int(len(df[df['總損益'] < 0])),
-        'stopped_count': int(len(df[df['已停損']])),
-        'win_rate': float(len(df[df['總損益'] > 0]) / len(df) * 100),
-        'avg_return': float(df['報酬率'].mean()),
+        'total_pnl': float(df['total_pnl'].sum()),
+        'total_max_loss': float(df['max_loss'].sum()),
+        'risk_adjusted_return': float(df['total_pnl'].sum() / df['max_loss'].sum() * 100),
+        'winning_count': int(len(df[df['total_pnl'] > 0])),
+        'losing_count': int(len(df[df['total_pnl'] < 0])),
+        'stopped_count': int(len(df[df['stopped_out']])),
+        'win_rate': float(len(df[df['total_pnl'] > 0]) / len(df) * 100),
+        'avg_return': float(df['return_pct'].mean()),
     }
     
     import json
