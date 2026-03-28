@@ -1,0 +1,88 @@
+# Squeeze Strategy Configuration
+# 保守策略 - 低風險穩定收益
+
+name: conservative
+version: 1.0
+description: "保守策略 - 高品質過濾，低回撤"
+author: Squeeze Team
+created: 2026-03-28
+updated: 2026-03-28
+
+# 市場設定
+market:
+  us:
+    enabled: true
+    default: false
+  tw:
+    enabled: true
+    default: true
+  cn:
+    enabled: false
+    default: false
+
+# 進場過濾器 (嚴格過濾)
+entry_filters:
+  min_momentum: 0.02
+  max_momentum: null
+  min_energy_level: 1
+  require_squeeze_on: true
+  require_fired: false
+  min_value_score: 0.5
+  min_price: 20.0
+  min_volume: 100000
+
+# 形態選擇
+patterns:
+  - squeeze
+  - whale
+
+# 信號類型
+signal_types:
+  - buy
+
+# 市場狀態過濾
+market_regime:
+  allowed_regimes:
+    - bull_trend
+    - range_bound
+
+# 出場規則 (較短持有期)
+exit_rules:
+  stop_loss_pct: 8.0
+  take_profit_pct: 18.0
+  holding_days: 10
+  time_stop_days: 7
+
+# 倉位管理 (保守配置)
+position_sizing:
+  position_size_pct: 60.0
+  max_single_position: 5.0
+  max_positions: 8
+
+# 空頭市場調整
+bear_market_adjustments:
+  enabled: true
+
+# 績效目標
+performance_targets:
+  target_annual_return: 30.0
+  max_drawdown: 15.0
+  min_sharpe_ratio: 2.0
+  min_win_rate: 55.0
+
+# 日誌與通知
+logging:
+  level: INFO
+  
+notifications:
+  email:
+    enabled: false
+  line:
+    enabled: false
+
+# 回測設定
+backtest:
+  initial_capital: 1000000
+  commission_pct: 0.1
+  slippage_pct: 0.05
+  benchmark: 0050.TW

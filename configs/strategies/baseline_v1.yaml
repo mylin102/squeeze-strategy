@@ -1,0 +1,113 @@
+# Squeeze Strategy Configuration
+# 策略配置文件 - YAML 格式
+
+name: baseline
+version: 1.0
+description: "基準策略 - 最佳整體表現"
+author: Squeeze Team
+created: 2026-03-28
+updated: 2026-03-28
+
+# 市場設定
+market:
+  us:
+    enabled: true
+    default: true
+  tw:
+    enabled: true
+    default: false
+  cn:
+    enabled: true
+    default: false
+
+# 進場過濾器
+entry_filters:
+  min_momentum: 0.0
+  max_momentum: null
+  min_energy_level: 0
+  require_squeeze_on: false
+  require_fired: false
+  min_value_score: null
+  min_price: null
+  max_price: null
+  min_volume: null
+  min_market_cap: null
+
+# 形態選擇
+patterns:
+  - squeeze
+  - houyi
+  - whale
+
+# 信號類型
+signal_types:
+  - buy
+
+# 市場狀態過濾
+market_regime:
+  allowed_regimes: null  # null = 所有市場狀態
+  # allowed_regimes:
+  #   - bull_trend
+  #   - range_bound
+
+# 出場規則
+exit_rules:
+  stop_loss_pct: 15.0
+  take_profit_pct: 25.0
+  holding_days: 14
+  time_stop_days: null
+  trailing_stop:
+    enabled: false
+    activation_pct: 10.0
+    trail_pct: 5.0
+
+# 倉位管理
+position_sizing:
+  position_size_pct: 100.0
+  max_single_position: 10.0
+  max_positions: 10
+  min_positions: 1
+  
+# 空頭市場調整 (自動啟用)
+bear_market_adjustments:
+  enabled: false  # true = 自動調整
+  position_size_pct: 40.0
+  stop_loss_pct: 6.0
+  take_profit_pct: 12.0
+  holding_days: 6
+  min_momentum: 0.06
+  min_energy_level: 2
+  min_value_score: 0.6
+  patterns:
+    - squeeze
+  signal_types:
+    - sell
+
+# 績效目標
+performance_targets:
+  target_annual_return: 50.0
+  max_drawdown: 30.0
+  min_sharpe_ratio: 1.0
+  min_win_rate: 40.0
+
+# 日誌與通知
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+notifications:
+  email:
+    enabled: false
+    on_signal: true
+    on_daily_summary: true
+  line:
+    enabled: false
+    on_signal: false
+    on_daily_summary: true
+
+# 回測設定 (用於驗證策略)
+backtest:
+  initial_capital: 1000000
+  commission_pct: 0.1
+  slippage_pct: 0.05
+  benchmark: SPY

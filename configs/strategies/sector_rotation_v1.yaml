@@ -1,0 +1,98 @@
+# Squeeze Strategy Configuration
+# 產業輪動策略配置
+
+name: sector_rotation
+version: 1.0
+description: "產業輪動策略 - 先選強勢族群再選強勢股"
+author: Squeeze Team
+created: 2026-03-28
+updated: 2026-03-28
+
+# 市場設定
+market:
+  tw:
+    enabled: true
+    default: true
+
+# 產業輪動特定設定
+sector_rotation:
+  # 選擇前 N 個強勢產業
+  top_sectors: 5
+  
+  # 每個產業選擇前 N 檔股票
+  top_stocks_per_sector: 10
+  
+  # 產業強度計算期間
+  lookback_period: 20
+  
+  # 最小產業股票數 (避免樣本數過少)
+  min_stocks_per_sector: 3
+  
+  # 產業分類來源
+  sector_classification:
+    source: twse
+    file: configs/markets/tw_sectors.json
+
+# 進場過濾器
+entry_filters:
+  min_momentum: 0.0
+  min_energy_level: 0
+  require_squeeze_on: false
+  require_fired: false
+
+# 形態選擇
+patterns:
+  - squeeze
+  - houyi
+  - whale
+
+# 信號類型
+signal_types:
+  - buy
+
+# 出場規則
+exit_rules:
+  stop_loss_pct: 10.0
+  take_profit_pct: 20.0
+  holding_days: 14
+
+# 倉位管理 (產業分散)
+position_sizing:
+  position_size_pct: 100.0
+  max_single_position: 5.0  # 單一股票不超過 5%
+  max_positions_per_sector: 3  # 單一產業不超過 3 檔
+  max_positions: 50  # 總部位數
+
+# 產業權重調整
+sector_weights:
+  # 等權重
+  method: equal_weight
+  
+  # 或依產業強度加權
+  # method: strength_weighted
+  # min_weight: 0.05
+  # max_weight: 0.25
+
+# 績效目標
+performance_targets:
+  target_annual_return: 40.0
+  max_drawdown: 25.0
+  min_sharpe_ratio: 1.5
+  min_win_rate: 50.0
+
+# 日誌與通知
+logging:
+  level: INFO
+  
+notifications:
+  email:
+    enabled: false
+  line:
+    enabled: false
+
+# 回測設定
+backtest:
+  initial_capital: 1000000
+  commission_pct: 0.1
+  slippage_pct: 0.05
+  benchmark: 0050.TW
