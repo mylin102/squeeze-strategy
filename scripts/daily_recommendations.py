@@ -108,7 +108,7 @@ def generate_daily_recommendations(
     
     # 載入股票清單
     universe = TickerUniverse(market)
-    tickers = universe.get_tickers()[:50]  # 限制為前 50 檔
+    tickers = universe.get_tickers()  # 使用完整清單
     ticker_names = universe.get_names()
     
     # 下載數據
@@ -131,8 +131,27 @@ def generate_daily_recommendations(
     print("掃描買入信號...")
     signals = strategy.scan_signals(stock_data, ticker_names)
     
-    # 過濾買入信號
-    buy_signals = [s for s in signals if '買入' in str(s.signal)]
+    # 過濾買入信號 (包含所有多頭信號)
+    from squeeze_strategy.models import SignalType
+    buy_signal_types = [SignalType.STRONG_BUY, SignalType.BUY, SignalType.WATCH]
+    buy_signals = [s for s in signals if s.signal in buy_signal_types]
+    
+    # 如果沒有信號，顯示診斷資訊
+    if not buy_signals:
+        print(f"\n⚠️  沒有找到買入信號，診斷資訊:")
+        print(f"   掃描股票數：{len(signals)}")
+        if signals:
+            print(f"   信號類型分佈:")
+            from collections import Counter
+            signal_counts = Counter(s.signal for s in signals)
+            for signal_type, count in signal_counts.most_common(5):
+                print(f"     {signal_type.value}: {count}")
+            
+            # 顯示動能最高的前 5 檔
+            print(f"   動能 Top 5:")
+            top_momentum = sorted(signals, key=lambda x: x.momentum, reverse=True)[:5]
+            for s in top_momentum:
+                print(f"     {s.ticker}: 動能={s.momentum:.2f}, 信號={s.signal.value}")
     
     # 依動能排序
     buy_signals = sorted(buy_signals, key=lambda x: x.momentum, reverse=True)
