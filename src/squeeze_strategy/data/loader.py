@@ -41,11 +41,11 @@ class TickerUniverse:
             return {}
     
     def _load_us_universe(self) -> Dict[str, str]:
-        """Load US stock universe - 200+ stocks"""
+        """Load US stock universe - 300 stocks"""
         import configparser
         
         # Try to load from config file first
-        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "us_stocks_200.ini"
+        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "us_stocks_300.ini"
         
         if config_file.exists():
             config = configparser.ConfigParser()
@@ -120,7 +120,7 @@ class TickerUniverse:
         return universe
     
     def _load_cn_universe(self) -> Dict[str, str]:
-        """Load China A-share universe - 100+ stocks"""
+        """Load China A-share universe - 300 stocks"""
         import configparser
         
         # Try to load from config file first
