@@ -13,5 +13,12 @@
   "market_regime_distribution": {
     "bull_trend": 33,
     "range_bound": 22
-  }
+  },
+  "stop_loss_pct": 10.0,
+  "total_return_with_stoploss": 1047.24,
+  "avg_return_with_stoploss": 6.42478527607362,
+  "win_rate_with_stoploss": 68.09815950920245,
+  "max_loss_before": -14.99,
+  "max_loss_after": -10.0,
+  "improvement": -67.04000000000019
 }

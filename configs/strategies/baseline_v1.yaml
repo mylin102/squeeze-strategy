@@ -1,9 +1,9 @@
 # Squeeze Strategy Configuration
-# 基準策略 - 寬鬆版本 (用於產生信號)
+# 基準策略 - 加入 10% 停損
 
 name: baseline
-version: 1.1
-description: "基準策略 - 寬鬆版本，易於產生信號"
+version: 1.2
+description: "基準策略 - 加入 10% 停損機制"
 author: Squeeze Team
 created: 2026-03-28
 updated: 2026-03-28
@@ -22,9 +22,9 @@ market:
 
 # 進場過濾器 (寬鬆)
 entry_filters:
-  min_momentum: -0.5      # 允許負動能
+  min_momentum: -0.5
   max_momentum: null
-  min_energy_level: 0     # 不要求能量等級
+  min_energy_level: 0
   require_squeeze_on: false
   require_fired: false
   min_value_score: null
@@ -44,12 +44,16 @@ signal_types:
 market_regime:
   allowed_regimes: null
 
-# 出場規則
+# 出場規則 (加入 10% 停損)
 exit_rules:
-  stop_loss_pct: 15.0
+  stop_loss_pct: 10.0           # ← 10% 停損
   take_profit_pct: 25.0
   holding_days: 14
-  time_stop_days: null
+  time_stop_days: 7             # 7 天時間停損
+  trailing_stop:
+    enabled: true
+    activation_pct: 15.0        # 獲利 15% 後啟動
+    trail_pct: 5.0              # 回檔 5% 出場
 
 # 倉位管理
 position_sizing:
@@ -64,9 +68,9 @@ bear_market_adjustments:
 # 績效目標
 performance_targets:
   target_annual_return: 50.0
-  max_drawdown: 30.0
-  min_sharpe_ratio: 1.0
-  min_win_rate: 40.0
+  max_drawdown: 20.0            # 降低最大回撤目標
+  min_sharpe_ratio: 1.5
+  min_win_rate: 50.0
 
 # 日誌與通知
 logging:
