@@ -43,5 +43,35 @@
     "momentum": 50.3733,
     "pattern": "squeeze",
     "note": "squeeze | 動能:50.37"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "300750.sz",
+    "name": "寧德時代",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 406.12,
+    "stop_loss_price": 365.51,
+    "stop_loss_pct": 10.0,
+    "shares": 100,
+    "risk_per_share": 40.61,
+    "max_loss": 4061.2,
+    "momentum": 42.325,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:42.33"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "301306.sz",
+    "name": "西測測試",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 144.99,
+    "stop_loss_price": 130.49,
+    "stop_loss_pct": 10.0,
+    "shares": 100,
+    "risk_per_share": 14.5,
+    "max_loss": 1449.9,
+    "momentum": 39.655,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:39.66"
   }
 ]
