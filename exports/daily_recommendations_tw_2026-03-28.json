@@ -1,7 +1,22 @@
 [
   {
     "date": "2026-03-28",
-    "ticker": "2360.tw",
+    "ticker": "5274.TWO",
+    "name": "信驊",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 10975.0,
+    "stop_loss_price": 9877.5,
+    "stop_loss_pct": 10.0,
+    "shares": 100,
+    "risk_per_share": 1097.5,
+    "max_loss": 109750.0,
+    "momentum": 2019.1667,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:2019.17"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "2360.TW",
     "name": "致茂",
     "signal": "SignalType.STRONG_BUY",
     "entry_price": 1560.0,
@@ -16,7 +31,7 @@
   },
   {
     "date": "2026-03-28",
-    "ticker": "2345.tw",
+    "ticker": "2345.TW",
     "name": "明泰",
     "signal": "SignalType.STRONG_BUY",
     "entry_price": 1625.0,
@@ -28,20 +43,5 @@
     "momentum": 205.8333,
     "pattern": "squeeze",
     "note": "squeeze | 動能:205.83"
-  },
-  {
-    "date": "2026-03-28",
-    "ticker": "2308.tw",
-    "name": "台達電",
-    "signal": "SignalType.STRONG_BUY",
-    "entry_price": 1460.0,
-    "stop_loss_price": 1314.0,
-    "stop_loss_pct": 10.0,
-    "shares": 100,
-    "risk_per_share": 146.0,
-    "max_loss": 14600.0,
-    "momentum": 175.8333,
-    "pattern": "squeeze",
-    "note": "squeeze | 動能:175.83"
   }
 ]
