@@ -62,8 +62,19 @@ class TickerUniverse:
         return {ticker: ticker for ticker in all_tickers}
     
     def _load_tw_universe(self) -> Dict[str, str]:
-        """Load Taiwan stock universe"""
-        # Taiwan 50 + selected stocks
+        """Load Taiwan stock universe - 100+ major stocks"""
+        import configparser
+        
+        # Try to load from config file first
+        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "tw_stocks_100.ini"
+        
+        if config_file.exists():
+            config = configparser.ConfigParser()
+            config.read(config_file, encoding='utf-8')
+            universe = dict(config['stocks'])
+            return universe
+        
+        # Fallback to basic 50 stocks if config file not found
         tw50 = [
             "2330.TW", "2317.TW", "2454.TW", "2303.TW", "2357.TW", "2353.TW",
             "2881.TW", "2882.TW", "2883.TW", "2884.TW", "2885.TW", "2886.TW",
@@ -76,28 +87,20 @@ class TickerUniverse:
             "2337.TW",
         ]
 
-        # Chinese names mapping (complete list)
         names = {
-            # 金融
-            "2881.TW": "富邦金", "2882.TW": "國泰金", "2883.TW": "開發金", "2884.TW": "玉山金",
-            "2885.TW": "元大金", "2886.TW": "兆豐金", "2891.TW": "中信金", "2892.TW": "第一金",
-            # 傳產
-            "1301.TW": "台塑", "1303.TW": "南亞", "1326.TW": "台化", "2002.TW": "中鋼",
-            "1216.TW": "統一", "1231.TW": "味全",
-            # 電子
             "2330.TW": "台積電", "2317.TW": "鴻海", "2454.TW": "聯發科", "2303.TW": "聯電",
-            "2357.TW": "華碩", "2353.TW": "宏碁", "2382.TW": "廣達", "2324.TW": "仁寶",
-            "2308.TW": "台達電", "2345.TW": "明泰", "2376.TW": "技嘉", "2360.TW": "致茂",
-            "2369.TW": "聯詠", "2379.TW": "瑞昱", "2393.TW": "億光", "2355.TW": "敬鵬",
-            "2337.TW": "旺宏",
-            "2409.TW": "友達", "2412.TW": "中華電", "2466.TW": "神達", "2467.TW": "志聖",
-            # 上櫃
-            "3081.TWO": "聯亞", "3211.TWO": "順達", "3680.TWO": "家登",
-            "5284.TW": "jpp-KY", "6285.TW": "啟碁", "6854.TW": "錼創-KY",
+            "2357.TW": "華碩", "2353.TW": "宏碁", "2881.TW": "富邦金", "2882.TW": "國泰金",
+            "2883.TW": "開發金", "2884.TW": "玉山金", "2885.TW": "元大金", "2886.TW": "兆豐金",
+            "2891.TW": "中信金", "2892.TW": "第一金", "1301.TW": "台塑", "1303.TW": "南亞",
+            "1326.TW": "台化", "2002.TW": "中鋼", "1216.TW": "統一", "1231.TW": "味全",
+            "2382.TW": "廣達", "2324.TW": "仁寶", "2308.TW": "台達電", "2345.TW": "明泰",
+            "2376.TW": "技嘉", "2360.TW": "致茂", "2369.TW": "聯詠", "2379.TW": "瑞昱",
+            "2393.TW": "億光", "2355.TW": "敬鵬", "2409.TW": "友達", "2412.TW": "中華電",
+            "2466.TW": "神達", "2467.TW": "志聖", "3081.TWO": "聯亞", "3211.TWO": "順達",
+            "3680.TWO": "家登", "5284.TW": "jpp-KY", "6285.TW": "啟碁", "6854.TW": "錼創-KY",
             "7734.TWO": "印能", "7880.TWO": "聖凰", "8021.TW": "尖點",
-            # 航運
-            "2204.TW": "中華", "2207.TW": "和泰車",
-            "2603.TW": "長榮", "2606.TW": "裕民", "2609.TW": "陽明",
+            "2204.TW": "中華", "2207.TW": "和泰車", "2603.TW": "長榮", "2606.TW": "裕民",
+            "2609.TW": "陽明", "2337.TW": "旺宏",
         }
 
         universe = {}
