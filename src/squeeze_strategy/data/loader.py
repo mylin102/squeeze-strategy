@@ -41,8 +41,19 @@ class TickerUniverse:
             return {}
     
     def _load_us_universe(self) -> Dict[str, str]:
-        """Load US stock universe (S&P 500 + NASDAQ 100)"""
-        # S&P 500 components (simplified list)
+        """Load US stock universe - 200+ stocks"""
+        import configparser
+        
+        # Try to load from config file first
+        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "us_stocks_200.ini"
+        
+        if config_file.exists():
+            config = configparser.ConfigParser()
+            config.read(config_file, encoding='utf-8')
+            universe = dict(config['stocks'])
+            return universe
+        
+        # Fallback to basic 63 stocks if config file not found
         sp500 = [
             "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "BRK.B",
             "JPM", "JNJ", "V", "PG", "UNH", "HD", "MA", "DIS", "PYPL",
@@ -51,13 +62,12 @@ class TickerUniverse:
             "CRM", "ORCL", "IBM", "QCOM", "TXN", "AMD", "AVGO", "ACN",
             "COST", "NKE", "MCD", "LLY", "TMO", "ABBV", "DHR", "NEE",
         ]
-        
-        # NASDAQ 100 additional
+
         nasdaq100 = [
             "AMGN", "GILD", "ISRG", "REGN", "VRTX", "BIIB", "ILMN",
             "MNST", "KDP", "LULU", "MRVL", "PANW", "ADSK", "NXPI",
         ]
-        
+
         all_tickers = list(set(sp500 + nasdaq100))
         return {ticker: ticker for ticker in all_tickers}
     
@@ -110,24 +120,35 @@ class TickerUniverse:
         return universe
     
     def _load_cn_universe(self) -> Dict[str, str]:
-        """Load China A-share universe"""
-        # CSI 300 sample
+        """Load China A-share universe - 100+ stocks"""
+        import configparser
+        
+        # Try to load from config file first
+        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "cn_stocks_100.ini"
+        
+        if config_file.exists():
+            config = configparser.ConfigParser()
+            config.read(config_file, encoding='utf-8')
+            universe = dict(config['stocks'])
+            return universe
+        
+        # Fallback to basic 20 stocks if config file not found
         cn_stocks = [
             "600519.SS", "000001.SZ", "300750.SZ", "002594.SZ", "601318.SS",
             "600036.SS", "000333.SZ", "600276.SS", "000858.SZ", "601888.SS",
             "600030.SS", "601166.SS", "000002.SZ", "600887.SS", "002415.SZ",
             "600900.SS", "601398.SS", "600585.SS", "000651.SZ", "600016.SS",
         ]
-        
+
         names = {
             "600519.SS": "貴州茅台", "000001.SZ": "平安銀行", "300750.SZ": "寧德時代",
             "002594.SZ": "比亞迪", "601318.SS": "中國平安", "600036.SS": "招商銀行",
         }
-        
+
         universe = {}
         for ticker in cn_stocks:
             universe[ticker] = names.get(ticker, ticker.split('.')[0])
-        
+
         return universe
     
     def get_tickers(self) -> List[str]:

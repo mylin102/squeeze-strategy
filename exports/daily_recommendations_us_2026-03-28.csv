@@ -1,0 +1,9 @@
+﻿ticker,name,entry_price,stop_loss_price,shares,risk_per_share,max_loss,note
+CVX,CVX,208.15,187.33,100,20.81,2081.5,squeeze | 動能:17.40
+XOM,XOM,165.58,149.02,100,16.56,1655.8,squeeze | 動能:13.99
+MRVL,MRVL,98.78,88.9,100,9.88,987.8,squeeze | 動能:6.95
+AMD,AMD,201.77,181.59,100,20.18,2017.7,squeeze | 動能:5.12
+CSCO,CSCO,81.98,73.78,100,8.2,819.8,squeeze | 動能:1.62
+MRK,MRK,119.29,107.36,100,11.93,1192.9,squeeze | 動能:1.13
+T,T,29.0,26.1,300,2.9,870.0,squeeze | 動能:0.63
+PFE,PFE,27.73,24.96,300,2.77,831.9,squeeze | 動能:0.17

@@ -73,5 +73,50 @@
     "momentum": 0.2783,
     "pattern": "squeeze",
     "note": "squeeze | 動能:0.28"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "601166.SS",
+    "name": "601166",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 18.8,
+    "stop_loss_price": 16.92,
+    "stop_loss_pct": 10.0,
+    "shares": 500,
+    "risk_per_share": 1.88,
+    "max_loss": 940.0,
+    "momentum": 0.2467,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:0.25"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "600036.SS",
+    "name": "招商銀行",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 39.5,
+    "stop_loss_price": 35.55,
+    "stop_loss_pct": 10.0,
+    "shares": 200,
+    "risk_per_share": 3.95,
+    "max_loss": 790.0,
+    "momentum": 0.2467,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:0.25"
+  },
+  {
+    "date": "2026-03-28",
+    "ticker": "000001.SZ",
+    "name": "平安銀行",
+    "signal": "SignalType.STRONG_BUY",
+    "entry_price": 10.91,
+    "stop_loss_price": 9.82,
+    "stop_loss_pct": 10.0,
+    "shares": 900,
+    "risk_per_share": 1.09,
+    "max_loss": 981.9,
+    "momentum": 0.0333,
+    "pattern": "squeeze",
+    "note": "squeeze | 動能:0.03"
   }
 ]
