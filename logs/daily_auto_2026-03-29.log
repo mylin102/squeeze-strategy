@@ -467,3 +467,291 @@ daily_recommendations.py: error: unrecognized arguments: --no-notify
 [2026-03-29 05:52:12] 
 [2026-03-29 05:52:12] 📊 今日訂單摘要:
 5274.TWO,BUY,10975.0,100
+[2026-03-29 06:09:20] ========================================
+[2026-03-29 06:09:20]   Qwen-Squeeze-Strategy 每日自動執行
+[2026-03-29 06:09:20] ========================================
+[2026-03-29 06:09:20]   專案目錄：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy
+[2026-03-29 06:09:20]   模式：paper
+[2026-03-29 06:09:20]   市場：tw
+[2026-03-29 06:09:20]   最大部位：10
+[2026-03-29 06:09:20]   停損比例：10%
+[2026-03-29 06:09:20] ========================================
+[2026-03-29 06:09:20] 
+[2026-03-29 06:09:20] [步驟 1/3] 生成每日建議清單...
+$2306.TW: possibly delisted; no price data found  (period=3mo)
+HTTP Error 404: 
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/yfinance/scrapers/quote.py:700: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  start = pd.Timestamp.utcnow().floor("D") - datetime.timedelta(days=365 // 2)
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/yfinance/scrapers/quote.py:702: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  end = pd.Timestamp.utcnow().ceil("D")
+$2309.TW: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2311.TW: possibly delisted; no price data found  (period=3mo)
+$2315.TW: possibly delisted; no price data found  (period=3mo)
+$2318.TW: possibly delisted; no price data found  (period=3mo)
+$2325.TW: possibly delisted; no price data found  (period=3mo)
+$2326.TW: possibly delisted; no price data found  (period=3mo)
+HTTP Error 404: 
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/yfinance/scrapers/quote.py:700: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  start = pd.Timestamp.utcnow().floor("D") - datetime.timedelta(days=365 // 2)
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/yfinance/scrapers/quote.py:702: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  end = pd.Timestamp.utcnow().ceil("D")
+$2334.TW: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2335.TW: possibly delisted; no price data found  (period=3mo)
+$2336.TW: possibly delisted; no price data found  (period=3mo)
+$2339.TW: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2341.TW: possibly delisted; no price data found  (period=3mo)
+$2343.TW: possibly delisted; no price data found  (period=3mo)
+$2346.TW: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2350.TW: possibly delisted; no price data found  (period=3mo)
+$2358.TW: possibly delisted; no price data found  (period=3mo)
+$2361.TW: possibly delisted; no price data found  (period=3mo)
+$1789.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2478.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2492.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$2497.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3008.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3019.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3027.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3042.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3044.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3046.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3049.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3094.TWO: possibly delisted; no price data found  (period=3mo)
+$3149.TWO: possibly delisted; no price data found  (period=3mo)
+$3164.TWO: possibly delisted; no price data found  (period=3mo)
+$3189.TWO: possibly delisted; no price data found  (period=3mo)
+$3209.TWO: possibly delisted; no price data found  (period=3mo)
+$3215.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3231.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3257.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3274.TWO: possibly delisted; no price data found  (period=3mo)
+$3296.TWO: possibly delisted; no price data found  (period=3mo)
+$3312.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3338.TWO: possibly delisted; no price data found  (period=3mo)
+$3356.TWO: possibly delisted; no price data found  (period=3mo)
+$3376.TWO: possibly delisted; no price data found  (period=3mo)
+$3383.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3397.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3406.TWO: possibly delisted; no price data found  (period=3mo)
+$3413.TWO: possibly delisted; no price data found  (period=3mo)
+$3437.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3443.TWO: possibly delisted; no price data found  (period=3mo)
+$3450.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3452.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3454.TWO: possibly delisted; no price data found  (period=3mo)
+$3481.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3507.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3514.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3518.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3519.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3532.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3533.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3545.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3550.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3557.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3561.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3568.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3576.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3579.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3583.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3588.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3591.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3593.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3596.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3605.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3607.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3622.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3645.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3653.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3661.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3665.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3669.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3679.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3682.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3686.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3698.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3701.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3702.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3703.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3704.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3705.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3708.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$3711.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4133.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4142.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4155.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4720.TWO: possibly delisted; no price data found  (period=3mo)
+$4736.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4737.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4746.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4753.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4763.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4779.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4789.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$4919.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$5203.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$5269.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$6405.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$6409.TWO: possibly delisted; no price data found  (period=3mo)
+$6414.TWO: possibly delisted; no price data found  (period=3mo)
+$6415.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$6526.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+$6669.TWO: possibly delisted; no price data found  (period=3mo) (Yahoo error = "No data found, symbol may be delisted")
+
+生成 TW 市場每日建議操作名單...
+策略：baseline
+最大建議檔數：10
+單筆最大虧損：1000.0 元
+停損比例：10.0%
+
+下載 219 檔股票數據...
+成功下載 110 檔
+
+掃描買入信號...
+找到 58 個買入信號
+選取前 10 檔
+
+====================================================================================================
+  每日建議操作名單 (2026-03-29 06:10)
+====================================================================================================
+
+代號           名稱                     進場價        停損價       股數       每股風險       最大虧損 備註                            
+----------------------------------------------------------------------------------------------------
+5274.TWO     信驊                10975.00    9877.50      100    1097.50  109750.00 squeeze | 動能:2019.17          
+2360.TW      致茂                 1560.00    1404.00      100     156.00   15600.00 squeeze | 動能:208.33           
+2345.TW      明泰                 1625.00    1462.50      100     162.50   16250.00 squeeze | 動能:205.83           
+2308.TW      台達電                1460.00    1314.00      100     146.00   14600.00 squeeze | 動能:175.83           
+7734.TWO     印能                 1765.00    1588.50      100     176.50   17650.00 squeeze | 動能:158.33           
+2368.TW      金像電                 890.00     801.00      100      89.00    8900.00 squeeze | 動能:148.17           
+3491.TWO     光聖                 1530.00    1377.00      100     153.00   15300.00 squeeze | 動能:144.17           
+3081.TWO     聯亞                 1615.00    1453.50      100     161.50   16150.00 squeeze | 動能:137.50           
+3260.TWO     威剛                  339.00     305.10      100      33.90    3390.00 squeeze | 動能:112.17           
+3293.TWO     鈊象                  789.00     710.10      100      78.90    7890.00 squeeze | 動能:58.17            
+----------------------------------------------------------------------------------------------------
+總計：10 檔
+總風險暴露：225480.00 元
+====================================================================================================
+✅ 已儲存至：exports/daily_recommendations_tw_2026-03-29.csv
+
+✅ 建議清單已儲存
+   CSV: exports/daily_recommendations_tw_2026-03-29.csv
+   JSON: exports/daily_recommendations_tw_2026-03-29.json
+[2026-03-29 06:10:58] ✅ 建議清單生成成功
+[2026-03-29 06:10:58] 
+[2026-03-29 06:10:58] [步驟 2/3] 執行交易並記錄資金變化...
+[2026-03-29 06:10:58]    使用建議清單：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy/exports/daily_recommendations_tw_2026-03-29.csv
+⚠️  資金不足！需要 1,097,500.00，可用 681,500.00
+📈 買入 2360.TW 100股 @ 1,560.00
+   成本：156,000.00
+   平均成本：1,560.00
+   剩餘現金：525,500.00
+📈 買入 2345.TW 100股 @ 1,625.00
+   成本：162,500.00
+   平均成本：1,625.00
+   剩餘現金：363,000.00
+📈 買入 2308.TW 100股 @ 1,460.00
+   成本：146,000.00
+   平均成本：1,460.00
+   剩餘現金：217,000.00
+📈 買入 7734.TWO 100股 @ 1,765.00
+   成本：176,500.00
+   平均成本：1,765.00
+   剩餘現金：40,500.00
+⚠️  資金不足！需要 89,000.00，可用 40,500.00
+⚠️  資金不足！需要 153,000.00，可用 40,500.00
+⚠️  資金不足！需要 161,500.00，可用 40,500.00
+📈 買入 3260.TWO 100股 @ 339.00
+   成本：33,900.00
+   平均成本：339.00
+   剩餘現金：6,600.00
+⚠️  資金不足！需要 78,900.00，可用 6,600.00
+[2026-03-29 06:11:01] ✅ 投資組合已更新
+[2026-03-29 06:11:01] 
+[2026-03-29 06:11:01] [步驟 3/3] 生成投資組合績效報告...
+======================================================================
+  投資組合狀態
+======================================================================
+
+💰 初始資金：1,000,000.00 TWD
+💵 可用現金：6,600.00
+📈 持倉總值：993,400.00
+💎 總價值：1,000,000.00
+
+📊 總損益：+0.00 (+0.00%)
+
+📈 目前持倉:
+代號                 數量           均價           市價           價值           損益
+----------------------------------------------------------------------
+2360.TW           200     1,560.00     1,560.00   312,000.00        +0.00
+2345.TW           200     1,625.00     1,625.00   325,000.00        +0.00
+2308.TW           100     1,460.00     1,460.00   146,000.00        +0.00
+7734.TWO          100     1,765.00     1,765.00   176,500.00        +0.00
+3260.TWO          100       339.00       339.00    33,900.00        +0.00
+
+📊 統計數據:
+   總交易次數：0
+   獲利：0 | 虧損：0
+   勝率：N/A
+   總損益：+0.00
+
+✅ 已結算交易：0 筆
+======================================================================
+[2026-03-29 06:11:01] ✅ 投資組合狀態檢視成功
+📄 報告已儲存：exports/portfolio_report_20260329.csv
+[2026-03-29 06:11:02] 
+[2026-03-29 06:11:02] ========================================
+[2026-03-29 06:11:02]   執行完成！
+[2026-03-29 06:11:02] ========================================
+[2026-03-29 06:11:02]   日誌檔案：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy/logs/daily_auto_2026-03-29.log
+[2026-03-29 06:11:02] ========================================
+[2026-03-29 06:11:02] 
+[2026-03-29 06:11:02] 📊 今日訂單摘要:
+5274.TWO,BUY,10975.0,100
+[2026-03-29 06:18:24] ========================================
+[2026-03-29 06:18:24]   Qwen-Squeeze-Strategy 每日自動執行
+[2026-03-29 06:18:24] ========================================
+[2026-03-29 06:18:24]   專案目錄：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy
+[2026-03-29 06:18:24]   模式：paper
+[2026-03-29 06:18:24]   市場：tw
+[2026-03-29 06:18:24]   最大部位：10
+[2026-03-29 06:18:24]   停損比例：10%
+[2026-03-29 06:18:24] ========================================
+[2026-03-29 06:18:24] 
+[2026-03-29 06:18:24] [檢查市場時段]
+[2026-03-29 06:18:24]    台北時間：2026-03-29 06:18:24 CST
+[2026-03-29 06:18:24]    星期：7
+[2026-03-29 06:18:24]    時間：06:18
+[2026-03-29 06:18:24]    ❌ 週末 (非交易日)
+[2026-03-29 06:18:24]    ✅ 終止執行 (exit 0)
+[2026-03-29 06:24:13] ========================================
+[2026-03-29 06:24:13]   Qwen-Squeeze-Strategy 每日自動執行
+[2026-03-29 06:24:13] ========================================
+[2026-03-29 06:24:13]   專案目錄：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy
+[2026-03-29 06:24:13]   模式：paper
+[2026-03-29 06:24:13]   市場：tw
+[2026-03-29 06:24:13]   最大部位：10
+[2026-03-29 06:24:13]   停損比例：10%
+[2026-03-29 06:24:13] ========================================
+[2026-03-29 06:24:13] 
+[2026-03-29 06:24:13] [檢查市場時段]
+[2026-03-29 06:24:13]    台北時間：2026-03-29 06:24:13 CST
+[2026-03-29 06:24:13]    星期：7
+[2026-03-29 06:24:13]    時間：06:24
+[2026-03-29 06:24:13]    ❌ 週末 (非交易日)
+[2026-03-29 06:24:13]    ✅ 終止執行 (exit 0)
+[2026-03-29 06:24:56] ========================================
+[2026-03-29 06:24:56]   Qwen-Squeeze-Strategy 每日自動執行
+[2026-03-29 06:24:56] ========================================
+[2026-03-29 06:24:56]   專案目錄：/Users/mylin/Documents/mylin102/Qwen-squeeze-strategy
+[2026-03-29 06:24:56]   模式：paper
+[2026-03-29 06:24:56]   市場：us
+[2026-03-29 06:24:56]   最大部位：10
+[2026-03-29 06:24:56]   停損比例：10%
+[2026-03-29 06:24:56] ========================================
+[2026-03-29 06:24:56] 
+[2026-03-29 06:24:56] [檢查市場時段]
+[2026-03-29 06:24:56]    紐約時間：2026-03-28 18:24:56 EDT
+[2026-03-29 06:24:56]    星期：6
+[2026-03-29 06:24:56]    時間：18:24
+[2026-03-29 06:24:56]    ❌ 週末 (非交易日)
+[2026-03-29 06:24:56]    ✅ 終止執行 (exit 0)

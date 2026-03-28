@@ -1,1 +1,6 @@
-﻿
+﻿type,ticker,quantity,avg_cost,trades
+position,2360.TW,200,1560.0,2
+position,2345.TW,200,1625.0,2
+position,2308.TW,100,1460.0,1
+position,7734.TWO,100,1765.0,1
+position,3260.TWO,100,339.0,1

@@ -7,6 +7,7 @@
 # 2. 自動執行模擬交易
 # 3. 記錄日誌
 # 4. 錯誤處理
+# 5. 市場時段檢查 (內建)
 #
 # 使用方式：
 #   ./scripts/run_daily_auto.sh --mode paper
@@ -28,6 +29,36 @@ MARKET="${MARKET:-tw}"
 MAX_POSITIONS="${MAX_POSITIONS:-10}"
 MAX_LOSS="${MAX_LOSS:-1000}"
 STOP_LOSS="${STOP_LOSS:-10}"
+
+# 解析命令行參數
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --mode)
+            MODE="$2"
+            shift 2
+            ;;
+        --market)
+            MARKET="$2"
+            shift 2
+            ;;
+        --max-positions)
+            MAX_POSITIONS="$2"
+            shift 2
+            ;;
+        --max-loss)
+            MAX_LOSS="$2"
+            shift 2
+            ;;
+        --stop-loss)
+            STOP_LOSS="$2"
+            shift 2
+            ;;
+        *)
+            echo "未知參數：$1"
+            exit 1
+            ;;
+    esac
+done
 
 # 建立日誌目錄
 mkdir -p "$LOG_DIR"
@@ -51,6 +82,93 @@ log "  市場：$MARKET"
 log "  最大部位：$MAX_POSITIONS"
 log "  停損比例：$STOP_LOSS%"
 log "========================================"
+
+# ========================================
+# 市場時段檢查 (自動處理夏令時間)
+# ========================================
+log ""
+log "[檢查市場時段]"
+
+case "$MARKET" in
+    us)
+        # 美股：週一至五 09:30-16:00 ET
+        NY_DAY="$(TZ=America/New_York date +%u)"
+        NY_HOUR="$(TZ=America/New_York date +%H)"
+        NY_MINUTE="$(TZ=America/New_York date +%M)"
+        CURRENT_NY_HHMM="${NY_HOUR}${NY_MINUTE}"
+        
+        log "   紐約時間：$(TZ=America/New_York date '+%Y-%m-%d %H:%M:%S %Z')"
+        log "   星期：$NY_DAY"
+        log "   時間：${NY_HOUR}:${NY_MINUTE}"
+        
+        # Only run during regular US market hours: Mon-Fri 09:30-16:00 ET
+        if [[ "${NY_DAY}" -gt 5 ]]; then
+            log "   ❌ 週末 (非交易日)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        if [[ "${CURRENT_NY_HHMM}" -lt 0930 || "${CURRENT_NY_HHMM}" -gt 1600 ]]; then
+            log "   ❌ 非交易時段 (09:30-16:00 ET)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        log "   ✅ 目前在交易時段內"
+        ;;
+    
+    tw)
+        # 台股：週一至五 09:00-13:30 TW
+        TW_DAY="$(TZ=Asia/Taipei date +%u)"
+        TW_HOUR="$(TZ=Asia/Taipei date +%H)"
+        TW_MINUTE="$(TZ=Asia/Taipei date +%M)"
+        CURRENT_TW_HHMM="${TW_HOUR}${TW_MINUTE}"
+        
+        log "   台北時間：$(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M:%S %Z')"
+        log "   星期：$TW_DAY"
+        log "   時間：${TW_HOUR}:${TW_MINUTE}"
+        
+        if [[ "${TW_DAY}" -gt 5 ]]; then
+            log "   ❌ 週末 (非交易日)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        if [[ "${CURRENT_TW_HHMM}" -lt 0900 || "${CURRENT_TW_HHMM}" -gt 1330 ]]; then
+            log "   ❌ 非交易時段 (09:00-13:30 TW)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        log "   ✅ 目前在交易時段內"
+        ;;
+    
+    cn)
+        # 中國 A 股：週一至五 09:30-15:00 CN
+        CN_DAY="$(TZ=Asia/Shanghai date +%u)"
+        CN_HOUR="$(TZ=Asia/Shanghai date +%H)"
+        CN_MINUTE="$(TZ=Asia/Shanghai date +%M)"
+        CURRENT_CN_HHMM="${CN_HOUR}${CN_MINUTE}"
+        
+        log "   上海時間：$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S %Z')"
+        log "   星期：$CN_DAY"
+        log "   時間：${CN_HOUR}:${CN_MINUTE}"
+        
+        if [[ "${CN_DAY}" -gt 5 ]]; then
+            log "   ❌ 週末 (非交易日)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        if [[ "${CURRENT_CN_HHMM}" -lt 0930 || "${CURRENT_CN_HHMM}" -gt 1500 ]]; then
+            log "   ❌ 非交易時段 (09:30-15:00 CN)"
+            log "   ✅ 終止執行 (exit 0)"
+            exit 0
+        fi
+        
+        log "   ✅ 目前在交易時段內"
+        ;;
+esac
 
 # 切換到專案目錄
 cd "$PROJECT_DIR"
