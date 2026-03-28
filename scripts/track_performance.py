@@ -111,21 +111,22 @@ def print_performance_report(df: pd.DataFrame):
     print("="*130)
 
 
-def save_performance_report(df: pd.DataFrame, output_dir: str = "exports"):
+def save_performance_report(df: pd.DataFrame, market: str = "tw", output_dir: str = "exports"):
     """儲存績效報告"""
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
-    
+
     today = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d')
-    
-    # CSV
-    csv_path = output_path / f"performance_tracking_{today}.csv"
+
+    # CSV - 加入市場代碼避免覆蓋
+    csv_path = output_path / f"performance_tracking_{market}_{today}.csv"
     df.to_csv(csv_path, index=False, encoding='utf-8-sig')
     print(f"\n✅ 績效報告已儲存至：{csv_path}")
-    
-    # Summary JSON
+
+    # Summary JSON - 加入市場代碼
     summary = {
         'date': today,
+        'market': market.upper(),
         'total_positions': len(df),
         'total_pnl': float(df['total_pnl'].sum()),
         'total_max_loss': float(df['max_loss'].sum()),
@@ -136,22 +137,43 @@ def save_performance_report(df: pd.DataFrame, output_dir: str = "exports"):
         'win_rate': float(len(df[df['total_pnl'] > 0]) / len(df) * 100),
         'avg_return': float(df['return_pct'].mean()),
     }
-    
+
     import json
-    json_path = output_path / f"performance_summary_{today}.json"
+    json_path = output_path / f"performance_summary_{market}_{today}.json"
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
     print(f"✅ 績效摘要已儲存至：{json_path}")
 
 
 def main():
+    parser = argparse.ArgumentParser(description='績效追蹤')
+    parser.add_argument('--market', default='tw', choices=['tw', 'us', 'cn'],
+                       help='市場代碼')
+    parser.add_argument('--input', type=str, 
+                       help='輸入檔案路徑 (預設使用最新檔案)')
+    
+    args = parser.parse_args()
     print()
     print("載入每日建議操作名單...")
     
-    # 載入建議清單
-    recommendations_file = 'exports/daily_recommendations_2026-03-28.csv'
-    df = load_recommendations(recommendations_file)
-    print(f"✅ 載入 {len(df)} 檔股票")
+    # 載入建議清單 - 支援市場區分
+    if args.input:
+        file_path = Path(args.input)
+    else:
+        # 找最新的檔案 (包含市場代碼)
+        output_path = Path('exports')
+        files = sorted(output_path.glob(f'daily_recommendations_{args.market}_*.csv'))
+        if files:
+            file_path = files[-1]
+        else:
+            print("❌ 找不到建議清單檔案")
+            return 1
+    
+    df = load_recommendations(str(file_path))
+    if df.empty:
+        return 1
+    
+    print(f"✅ 載入 {len(df)} 檔股票 ({args.market.upper()})")
     print()
     
     # 模擬當前價格
@@ -164,11 +186,9 @@ def main():
     # 列印報告
     print_performance_report(df)
     
-    # 儲存
-    save_performance_report(df)
+    # 儲存 - 加入市場代碼
+    save_performance_report(df, market=args.market)
     
     print()
-
-
-if __name__ == "__main__":
-    main()
+    
+    return 0

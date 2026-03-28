@@ -193,18 +193,21 @@ def generate_daily_recommendations(
 
 def save_recommendations(
     recommendations: List[Dict[str, Any]],
+    market: str = "tw",
     output_dir: str = "exports"
 ) -> Path:
     """
     儲存建議清單到 CSV 和 JSON
-    
+
     Parameters:
     -----------
     recommendations : List[Dict]
         建議清單
+    market : str
+        市場代碼 (tw, us, cn)
     output_dir : str
         輸出目錄
-    
+
     Returns:
     --------
     Path : 輸出的 CSV 路徑
@@ -214,9 +217,9 @@ def save_recommendations(
     
     today = get_china_time().strftime('%Y-%m-%d')
     
-    # 儲存 CSV
+    # 儲存 CSV - 加入市場代碼避免覆蓋
     df = pd.DataFrame(recommendations)
-    csv_path = output_path / f"daily_recommendations_{today}.csv"
+    csv_path = output_path / f"daily_recommendations_{market}_{today}.csv"
     
     # 選擇要輸出的欄位
     columns = ['ticker', 'name', 'entry_price', 'stop_loss_price', 'shares', 
@@ -228,8 +231,8 @@ def save_recommendations(
     else:
         print("⚠️  無建議股票")
     
-    # 儲存 JSON
-    json_path = output_path / f"daily_recommendations_{today}.json"
+    # 儲存 JSON - 加入市場代碼
+    json_path = output_path / f"daily_recommendations_{market}_{today}.json"
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(recommendations, f, indent=2, ensure_ascii=False)
     
@@ -396,15 +399,15 @@ def main():
             max_loss_per_trade=args.max_loss,
             stop_loss_pct=args.stop_loss,
         )
-        
+
         print_recommendations_table(recommendations)
-        
-        # 儲存
-        csv_path = save_recommendations(recommendations)
+
+        # 儲存 - 加入市場參數避免覆蓋
+        csv_path = save_recommendations(recommendations, market=args.market)
         print(f"\n✅ 建議清單已儲存")
         print(f"   CSV: {csv_path}")
         print(f"   JSON: {csv_path.with_suffix('.json')}")
-    
+
     return 0
 
 
