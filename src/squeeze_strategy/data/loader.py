@@ -72,14 +72,15 @@ class TickerUniverse:
         return {ticker: ticker for ticker in all_tickers}
     
     def _load_tw_universe(self) -> Dict[str, str]:
-        """Load Taiwan stock universe - 100+ major stocks"""
+        """Load Taiwan stock universe - 150+ stocks (上市 + 上櫃)"""
         import configparser
         
         # Try to load from config file first
-        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "tw_stocks_100.ini"
+        config_file = Path(__file__).parent.parent.parent.parent / "configs" / "markets" / "tw_stocks_150.ini"
         
         if config_file.exists():
             config = configparser.ConfigParser()
+            config.optionxform = str  # 保留原始大小寫 (.TW/.TWO)
             config.read(config_file, encoding='utf-8')
             universe = dict(config['stocks'])
             return universe
